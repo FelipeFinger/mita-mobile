@@ -7,6 +7,7 @@ const { Navigator, Screen } = createStackNavigator();
 import VideosMap from './pages/VideosMap';
 import VideoDetails from './pages/VideoDetails';
 import CreateVideo from './pages/CreateVideo';
+import PatientsMap from './pages/PatientsMap';
 import Header from './components/Header';
 
 export default function Routes() {
@@ -18,7 +19,7 @@ export default function Routes() {
                     component={VideosMap}
                     options={{
                         headerShown: true,
-                        header: () => <Header showBack={false} showCancel={false} title="Vídeos" />
+                        header: () => <Header showBack={false} title="Vídeos" />
                     }}
                 />
 
@@ -32,11 +33,20 @@ export default function Routes() {
                 />
 
                 <Screen
-                    name="Novo vídeo"
+                    name="CreateVideo"
                     component={CreateVideo}
                     options={{
                         headerShown: true,
                         header: () => <Header title="Novo vídeo" />
+                    }}
+                />
+
+                <Screen
+                    name="Patients"
+                    component={PatientsMap}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header showBack={false} title="Pacientes" />
                     }}
                 />
             </Navigator>

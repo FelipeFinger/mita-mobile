@@ -7,42 +7,42 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton, ScrollView } from 'react-native-gesture-handler';
 import api from '../services/api';
 
-interface Video {
+interface Patient {
     id: number;
-    titulo: string;
+    nome: string;
 }
 
-export default function VideosMap() {
-    const [videos, setVideos] = useState<Video[]>([]);
+export default function PatientsMap() {
+    const [patients, setPatients] = useState<Patient[]>([]);
     const navigation = useNavigation();
 
     useFocusEffect(() => {
-        api.get('videos/adquirir').then(response => {
-            setVideos(response.data);
+        api.get('pacientes/adquirir').then(response => {
+            setPatients(response.data);
         })
     });
 
-    function handleNavigateToVideoDetails(id: number) {
-        navigation.navigate('VideoDetails', { id });
+    function handleNavigateToPatientDetails(id: number) {
+        navigation.navigate('PatientDetails', { id });
     }
 
-    function handleNavigateToCreateVideo() {
-        navigation.navigate('CreateVideo');
+    function handleNavigateToCreatePatient() {
+        navigation.navigate('CreatePatient');
     }
 
-    function handleNavigateToPatientsMap() {
-        navigation.navigate('Patients');
+    function handleNavigateToVideosMap() {
+        navigation.navigate('Videos');
     }
 
     return (
         <View style={styles.container}>
             <ScrollView>
                 <View style={styles.body}>
-                    {videos.map(video => {
+                    {patients.map(patient => {
                         return (
-                            <TouchableOpacity key={video.id} style={styles.item} onPress={() => handleNavigateToVideoDetails(video.id)}>
-                                <Feather name="play-circle" size={30} color="#12c3d6" />
-                                <Text style={styles.itemText}>{video.titulo}</Text>
+                            <TouchableOpacity key={patient.id} style={styles.item} onPress={() => handleNavigateToPatientDetails(patient.id)}>
+                                <Feather name="user" size={30} color="#12c3d6" />
+                                <Text style={styles.itemText}>{patient.nome}</Text>
                             </TouchableOpacity>
                         );
                     })}
@@ -51,14 +51,14 @@ export default function VideosMap() {
             </ScrollView>
 
             <View style={styles.footer}>
-                <RectButton style={styles.button} onPress={handleNavigateToPatientsMap}>
-                    <Feather name="user" size={20} color="#FFF" />
-                    <Text style={styles.buttonText}>Pacientes</Text>
+                <RectButton style={styles.button} onPress={handleNavigateToVideosMap}>
+                    <Feather name="video" size={20} color="#FFF" />
+                    <Text style={styles.buttonText}>Videos</Text>
                 </RectButton>
 
-                <RectButton style={styles.button} onPress={handleNavigateToCreateVideo}>
+                <RectButton style={styles.button} onPress={handleNavigateToCreatePatient}>
                     <Feather name="plus" size={20} color="#FFF" />
-                    <Text style={styles.buttonText}>Novo video</Text>
+                    <Text style={styles.buttonText}>Novo paciente</Text>
                 </RectButton>
             </View>
         </View>
