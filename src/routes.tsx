@@ -8,6 +8,7 @@ import VideosMap from './pages/VideosMap';
 import VideoDetails from './pages/VideoDetails';
 import CreateVideo from './pages/CreateVideo';
 import PatientsMap from './pages/PatientsMap';
+import CreatePatient from './pages/CreatePatient';
 import Header from './components/Header';
 
 export default function Routes() {
@@ -47,6 +48,15 @@ export default function Routes() {
                     options={{
                         headerShown: true,
                         header: () => <Header showBack={false} title="Pacientes" />
+                    }}
+                />
+
+                <Screen
+                    name="CreatePatient"
+                    component={CreatePatient}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title="Novo paciente" />
                     }}
                 />
             </Navigator>
