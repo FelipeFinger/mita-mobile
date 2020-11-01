@@ -79,7 +79,6 @@ export default function CreatePatient() {
                     minValue={0}
                     maxValue={10}
                     textColor='#15c3d6'
-                    iconStyle={{ color: 'white' }}
                     rightButtonBackgroundColor='#15c3d6'
                     leftButtonBackgroundColor='#15c3d6'
                 />

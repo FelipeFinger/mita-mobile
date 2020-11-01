@@ -13,14 +13,14 @@ export default function Header({ title, showBack = true }: HeaderProps) {
     const navigation = useNavigation();
 
     function handleGoBackToAppHomePage() {
-        navigation.navigate('Videos');
+        navigation.navigate('LandingPage');
     }
 
     return (
         <View style={styles.container}>
             { showBack ? (
                 <BorderlessButton onPress={navigation.goBack}>
-                    <Feather name="arrow-left" size={24} color="#f9fafc" />
+                    <Feather name="arrow-left-circle" size={24} color="#f9fafc" />
                 </BorderlessButton>
             ) : (
                     <View />
@@ -30,7 +30,7 @@ export default function Header({ title, showBack = true }: HeaderProps) {
 
             { showBack ? (
                 <BorderlessButton onPress={handleGoBackToAppHomePage}>
-                    <Feather name="x" size={24} color="#FFF" />
+                    <Feather name="home" size={24} color="#FFF" />
                 </BorderlessButton>
             ) : (
                     <View />

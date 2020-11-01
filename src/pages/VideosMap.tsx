@@ -37,7 +37,7 @@ export default function VideosMap() {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View style={styles.body}>
+                <View>
                     {videos.map(video => {
                         return (
                             <TouchableOpacity key={video.id} style={styles.item} onPress={() => handleNavigateToVideoDetails(video.id)}>

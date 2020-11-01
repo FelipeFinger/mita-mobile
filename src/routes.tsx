@@ -4,11 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const { Navigator, Screen } = createStackNavigator();
 
+import LandingPage from './pages/LandingPage';
 import VideosMap from './pages/VideosMap';
 import VideoDetails from './pages/VideoDetails';
 import CreateVideo from './pages/CreateVideo';
 import PatientsMap from './pages/PatientsMap';
 import CreatePatient from './pages/CreatePatient';
+import PatientDetails from './pages/PatientDetails';
+import PatientSessions from './pages/PatientSessions';
 import Header from './components/Header';
 
 export default function Routes() {
@@ -16,11 +19,19 @@ export default function Routes() {
         <NavigationContainer>
             <Navigator screenOptions={{ headerShown: false, cardStyle: { backgroundColor: '#f2f3f5' } }}>
                 <Screen
+                    name="LandingPage"
+                    component={LandingPage}
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+
+                <Screen
                     name="Videos"
                     component={VideosMap}
                     options={{
                         headerShown: true,
-                        header: () => <Header showBack={false} title="Vídeos" />
+                        header: () => <Header title="Vídeos" />
                     }}
                 />
 
@@ -47,7 +58,7 @@ export default function Routes() {
                     component={PatientsMap}
                     options={{
                         headerShown: true,
-                        header: () => <Header showBack={false} title="Pacientes" />
+                        header: () => <Header title="Pacientes" />
                     }}
                 />
 
@@ -57,6 +68,24 @@ export default function Routes() {
                     options={{
                         headerShown: true,
                         header: () => <Header title="Novo paciente" />
+                    }}
+                />
+
+                <Screen
+                    name="PatientDetails"
+                    component={PatientDetails}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title="Paciente" />
+                    }}
+                />
+
+                <Screen
+                    name="PatientSessions"
+                    component={PatientSessions}
+                    options={{
+                        headerShown: true,
+                        header: () => <Header title="Sessões" />
                     }}
                 />
             </Navigator>

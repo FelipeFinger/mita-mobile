@@ -37,7 +37,7 @@ export default function PatientsMap() {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <View style={styles.body}>
+                <View>
                     {patients.map(patient => {
                         return (
                             <TouchableOpacity key={patient.id} style={styles.item} onPress={() => handleNavigateToPatientDetails(patient.id)}>
