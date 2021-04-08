@@ -14,6 +14,7 @@ interface Sessoes {
     id: number;
     codigoPaciente: number;
     numeroSessao: number;
+    fisioterapeuta: string;
     data: string;
     eva: number;
     observacoes: string;
@@ -29,8 +30,10 @@ export default function PatientSessions() {
     const params = route.params as PatientSessionsRouteParams;
     const [sessoes, setSessoes] = useState<SessoesDTO>();
     const [observacoesConteudo, setObservacoesConteudo] = useState('');
+    const [observacoesFisioterapeuta, setObservacoesFisioterapeuta] = useState('');
     const [exibirObservacoesSessao, setExibirObservacoesSessao] = useState(0);
 
+    const [fisioterapeuta, setFisioterapeuta] = useState('');
     const [observacoes, setObservacoes] = useState('');
     const [eva, setEva] = useState(5);
 
@@ -57,6 +60,7 @@ export default function PatientSessions() {
 
     function handleObservacoes(sessao: Sessoes) {
         setExibirObservacoes(true);
+        setObservacoesFisioterapeuta(sessao.fisioterapeuta);
         setObservacoesConteudo(sessao.observacoes);
         setExibirObservacoesSessao(sessao.numeroSessao);
     }
@@ -65,6 +69,7 @@ export default function PatientSessions() {
 
         const registerSession = {
             codigoPaciente: params.id,
+            fisioterapeuta,
             data: null,
             eva,
             observacoes
@@ -74,6 +79,7 @@ export default function PatientSessions() {
 
         setEva(5);
         setObservacoes('');
+        setFisioterapeuta('');
 
         Alert.alert(
             "Informação",
@@ -99,6 +105,13 @@ export default function PatientSessions() {
                 {exibirFormulario && (
                     <View>
                         <Text style={styles.title}>Informações da sessão</Text>
+
+                        <Text style={styles.label}>Fisioterapeuta*</Text>
+                        <TextInput
+                            style={styles.input}
+                            value={fisioterapeuta}
+                            onChangeText={setFisioterapeuta}
+                        />
 
                         <Text style={styles.label}>Escala Visual Analógica da dor (EVA)*</Text>
                         <View style={styles.eva}>
@@ -155,6 +168,8 @@ export default function PatientSessions() {
                         <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, marginBottom: 15 }} />
 
                         <Text style={styles.description}>Observações {exibirObservacoesSessao}ª sessão</Text>
+
+                        <Text style={styles.descriptionName}>Fisioterapeuta responsável: {observacoesFisioterapeuta}</Text>
 
                         <Text style={styles.description}>{observacoesConteudo}</Text>
                     </View>
@@ -269,6 +284,14 @@ const styles = StyleSheet.create({
         lineHeight: 24,
         marginTop: 5,
         fontSize: 20,
+    },
+
+    descriptionName: {
+        fontFamily: 'Nunito_700Bold',
+        color: '#5c8599',
+        lineHeight: 24,
+        marginTop: 5,
+        fontSize: 14,
     },
 
     bold: {
